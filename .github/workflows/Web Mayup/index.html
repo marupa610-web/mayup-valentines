@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mayup's Valentine World ❤️</title>
+    <!-- Font Romantis dan Lucu -->
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@500;700&family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --val-red: #ff4d6d;
+            --val-pink: #ff85a1;
+            --val-light: #fff0f3;
+            --val-dark: #800f2f;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--val-light);
+            color: var(--val-dark);
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            font-family: 'Fredoka', sans-serif;
+            /* Pola Latar Belakang Hati Kecil */
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='%23ffb3c1' fill-opacity='0.4' d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E");
+        }
+
+        /* --- ANIMASI HUJAN HATI --- */
+        .heart-particle {
+            position: fixed;
+            top: -10%;
+            z-index: 999;
+            user-select: none;
+            pointer-events: none;
+            animation: fall linear forwards;
+        }
+
+        @keyframes fall {
+            to { transform: translateY(110vh) rotate(360deg); }
+        }
+
+        /* --- NAVBAR --- */
+        .container-navbar {
+            position: fixed;
+            top: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(8px);
+            padding: 8px 15px;
+            border-radius: 50px;
+            box-shadow: 0 5px 15px rgba(255, 77, 109, 0.2);
+            z-index: 1000;
+            border: 2px solid var(--val-pink);
+            width: fit-content;
+            max-width: 90%;
+        }
+
+        .ul-navbar {
+            list-style: none;
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-btn {
+            background: none;
+            border: none;
+            color: var(--val-dark);
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 0.85rem;
+            padding: 8px 15px;
+            border-radius: 25px;
+            transition: 0.3s;
+        }
+
+        .nav-btn.active, .nav-btn:hover {
+            background-color: var(--val-red);
+            color: white;
+        }
+
+        /* --- MAIN CONTENT --- */
+        .content-wrapper {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 100px 15px 40px;
+        }
+
+        .page {
+            display: none;
+            width: 100%;
+            max-width: 600px;
+            background: white;
+            border-radius: 40px;
+            padding: 35px 25px;
+            border: 5px solid var(--val-pink);
+            box-shadow: 0 15px 35px rgba(255, 77, 109, 0.15);
+            position: relative;
+            animation: pageZoom 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .page::before {
+            content: '❤️';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            padding: 0 10px;
+            font-size: 1.5rem;
+        }
+
+        @keyframes pageZoom {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .page.active { display: block; }
+
+        h2 {
+            font-family: 'Pacifico', cursive;
+            color: var(--val-red);
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        /* --- HOME --- */
+        .home-content { text-align: center; }
+
+        .profile-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .profile-container::after {
+            content: '🌸';
+            position: absolute;
+            bottom: 10px;
+            right: 0;
+            font-size: 2rem;
+        }
+
+        .img-content {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 8px solid var(--val-pink);
+            box-shadow: 0 0 20px rgba(255, 133, 161, 0.5);
+            transition: 0.4s;
+        }
+
+        .img-content:hover {
+            transform: scale(1.05) rotate(3deg);
+            border-color: var(--val-red);
+        }
+
+        .insta-link {
+            text-decoration: none;
+            color: white;
+            background: linear-gradient(45deg, var(--val-red), var(--val-pink));
+            padding: 12px 25px;
+            border-radius: 30px;
+            display: inline-block;
+            margin-top: 20px;
+            font-weight: 600;
+            box-shadow: 0 5px 15px rgba(255, 77, 109, 0.3);
+            transition: 0.3s;
+        }
+
+        .insta-link:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(255, 77, 109, 0.5); }
+
+        /* --- ABOUT --- */
+        .about-text {
+            text-align: center;
+            font-family: 'Quicksand', sans-serif;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        /* --- CONTACT --- */
+        .comment-form { display: flex; flex-direction: column; gap: 15px; }
+        
+        input, textarea {
+            border: 2px solid var(--val-pink);
+            border-radius: 15px;
+            padding: 12px 15px;
+            outline: none;
+            font-family: 'Quicksand', sans-serif;
+        }
+
+        input:focus, textarea:focus { border-color: var(--val-red); background: var(--val-light); }
+
+        .submit-btn {
+            background: var(--val-red);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .submit-btn:hover { background: var(--val-dark); }
+
+        .comments-list {
+            margin-top: 20px;
+            max-height: 200px;
+            overflow-y: auto;
+            border-top: 2px dashed var(--val-pink);
+            padding-top: 15px;
+        }
+
+        .comment-item {
+            background: var(--val-light);
+            padding: 12px;
+            border-radius: 15px;
+            margin-bottom: 10px;
+            border-left: 5px solid var(--val-red);
+        }
+
+        /* --- FOOTER --- */
+        .footer {
+            text-align: center;
+            background: var(--val-red);
+            color: white;
+            padding: 40px 20px;
+            clip-path: polygon(0 20%, 100% 0, 100% 100%, 0 100%);
+        }
+
+        /* Mobile Adjustments */
+        @media (min-width: 768px) {
+            h2 { font-size: 2.5rem; }
+            .img-content { width: 250px; height: 250px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="container-navbar">
+        <div class="ul-navbar">
+            <button class="nav-btn active" onclick="showPage('home', this)">Home</button>
+            <button class="nav-btn" onclick="showPage('about', this)">About</button>
+            <button class="nav-btn" onclick="showPage('contact', this)">Contact</button>
+        </div>
+    </nav>
+
+    <!-- CONTENT -->
+    <main class="content-wrapper">
+        
+        <!-- PAGE: HOME -->
+        <div id="home" class="page active">
+            <div class="home-content">
+                <h2>Be My Valentine? 💌</h2>
+                <div class="profile-container">
+                    <img src="webcam-toy-photo56.jpg" class="img-content" alt="Foto Valentine Mayup" onerror="this.src='https://api.dicebear.com/7.x/avataaars/svg?seed=Valentine'">
+                </div>
+                <br>
+                <a href="https://www.instagram.com/sqturnz__" target="_blank" class="insta-link">
+                    💝 Follow My IG 💝
+                </a>
+            </div>
+        </div>
+
+        <!-- PAGE: ABOUT -->
+        <div id="about" class="page">
+            <h2>About Mayup 🎀</h2>
+            <div class="about-text">
+                <p>Happy Valentine Ocean ku, Di dunia yang terus berubah ini, satu hal yang pasti: persahabatan kita. Love you to the moon and back!</p>
+                <p style="margin-top: 15px; font-size: 1.5rem;">💕✨🌹</p>
+            </div>
+        </div>
+
+        <!-- PAGE: CONTACT -->
+        <div id="contact" class="page">
+            <h2>Love Letters 💌</h2>
+            <div class="comment-form">
+                <input type="text" id="userName" placeholder="Siapa nama pengirimnya?">
+                <textarea id="userComment" rows="3" placeholder="Tulis pesan cintamu..."></textarea>
+                <button class="submit-btn" onclick="addComment()">Kirim Pesan Sayang ✨</button>
+            </div>
+            <div id="commentsDisplay" class="comments-list">
+                <div class="comment-item">
+                    <b style="color:var(--val-red)">Cupid</b>
+                    <p>Selamat hari Valentine semuanya! ❤️</p>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <h3>Halo para puqimak 😍 Happy Valentine!</h3>
+        <p style="font-size: 0.8rem; margin-top: 10px; opacity: 0.8;">Made with Love & Hearts by Mayup</p>
+    </footer>
+
+    <script>
+        // Fungsi Hujan Hati
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart-particle');
+            heart.innerHTML = ['❤️', '💖', '💝', '💕', '🌹'][Math.floor(Math.random() * 5)];
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 3 + 2 + 's';
+            heart.style.fontSize = Math.random() * 20 + 10 + 'px';
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+
+        setInterval(createHeart, 300);
+
+        // Ganti Halaman
+        function showPage(pageId, btn) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+            
+            document.getElementById(pageId).classList.add('active');
+            btn.classList.add('active');
+        }
+
+        // Tambah Komentar
+        function addComment() {
+            const name = document.getElementById('userName').value;
+            const text = document.getElementById('userComment').value;
+            if(!name || !text) return;
+
+            const div = document.createElement('div');
+            div.className = 'comment-item';
+            div.innerHTML = `<b style="color:var(--val-red)">${name}</b><p>${text}</p>`;
+            
+            document.getElementById('commentsDisplay').prepend(div);
+            document.getElementById('userName').value = '';
+            document.getElementById('userComment').value = '';
+        }
+    </script>
+</body>
+</html>
